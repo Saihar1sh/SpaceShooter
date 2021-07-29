@@ -13,9 +13,7 @@ public class PlayerShipcontroller
 
     public void ShipMovement(Vector3 movementInput, Rigidbody shipRb, float mvtSpeed)
     {
-        //Debug.Log("horizontal: " + horizontal + " vertical:" + vertical);
         shipRb.MovePosition(shipRb.position + movementInput * mvtSpeed * Time.deltaTime);
-        //Vector3 rotation = movementInput * rotatingSpeed;
     }
 
 

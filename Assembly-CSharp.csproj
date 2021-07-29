@@ -64,10 +64,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Downloaded Assets\Asteroids Pack\Assets\Scripts\RandomRotator.cs" />
     <Compile Include="Assets\Downloaded Assets\StarSparrow\Readme\Readme Files\Scripts\ReadmeStarSparrow.cs" />
+    <Compile Include="Assets\Scripts\AsteroidMovement.cs" />
     <Compile Include="Assets\Scripts\MVC\BulletController.cs" />
     <Compile Include="Assets\Scripts\MVC\BulletService.cs" />
-    <Compile Include="Assets\Scripts\MVC\Enemy\EnemyShipService.cs" />
+    <Compile Include="Assets\Scripts\MVC\Enemy\EnemyService.cs" />
+    <Compile Include="Assets\Scripts\MVC\Enemy\EnemyView.cs" />
     <Compile Include="Assets\Scripts\MVC\Player\PlayerShipModel.cs" />
     <Compile Include="Assets\Scripts\MVC\Player\PlayerShipService.cs" />
     <Compile Include="Assets\Scripts\MVC\Player\PlayerShipView.cs" />

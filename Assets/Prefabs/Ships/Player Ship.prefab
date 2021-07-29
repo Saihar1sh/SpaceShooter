@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b801587a697c49047b2c41ca7bee0300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mvtSpeed: 2
+  mvtSpeed: 5
   rotatingSpeed: 2
   firePoint: {fileID: 8747718137201446597}
 --- !u!1 &6542458831553095040

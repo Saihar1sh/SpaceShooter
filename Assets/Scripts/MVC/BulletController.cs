@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody))]
 public class BulletController : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    private Rigidbody rb;
 
     [SerializeField]
     private float speed = 2f, maxLifetime = 5f;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
         Destroy(gameObject, maxLifetime);
     }
 
@@ -26,5 +26,9 @@ public class BulletController : MonoBehaviour
     void Update()
     {
 
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("sjhg");
     }
 }
