@@ -65,11 +65,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Downloaded Assets\StarSparrow\Readme\Readme Files\Scripts\ReadmeStarSparrow.cs" />
+    <Compile Include="Assets\Scripts\MVC\BulletController.cs" />
+    <Compile Include="Assets\Scripts\MVC\BulletService.cs" />
+    <Compile Include="Assets\Scripts\MVC\Enemy\EnemyShipService.cs" />
+    <Compile Include="Assets\Scripts\MVC\Player\PlayerShipModel.cs" />
+    <Compile Include="Assets\Scripts\MVC\Player\PlayerShipService.cs" />
+    <Compile Include="Assets\Scripts\MVC\Player\PlayerShipView.cs" />
+    <Compile Include="Assets\Scripts\MVC\Player\PlayerShipcontroller.cs" />
     <Compile Include="Assets\Scripts\MonoSingletonGeneric.cs" />
-    <Compile Include="Assets\Scripts\PlayerShipModel.cs" />
-    <Compile Include="Assets\Scripts\PlayerShipView.cs" />
-    <Compile Include="Assets\Scripts\PlayerShipcontroller.cs" />
-    <Compile Include="Assets\Scripts\ShipService.cs" />
     <None Include="Assets\Downloaded Assets\DeepSpaceSkyboxPack\GalaxyFire\Galaxy Fire Skybox Readme.txt" />
     <None Include="Assets\Downloaded Assets\Luminaris Starship\Documentation\Readme Luminaris.txt" />
     <None Include="Assets\Downloaded Assets\DeepSpaceSkyboxPack\DiverseSpace\Diverse Space Skybox Readme.txt" />
