@@ -35,17 +35,13 @@ public class PlayerShipView : MonoBehaviour
         {
             Vector3 movementInput = new Vector3(keyBoardHorizontal, keyBoardVertical, 0);
             playerShipcontroller.ShipMovement(movementInput, shipRb, mvtSpeed);
-            //BorderCheck();
+
 
         }
 
         if (Input.GetMouseButton(0))
             Shoot();
 
-    }
-    private void BorderCheck()
-    {
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -13, 22), Mathf.Clamp(transform.position.y, -9.5f, 10.5f), 10);
     }
 
     private void Shoot()
