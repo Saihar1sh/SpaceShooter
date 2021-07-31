@@ -13,7 +13,7 @@ public class AsteroidMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Destroy(gameObject, 10f);
+        Destroy(gameObject, 15f);
     }
 
     // Update is called once per frame

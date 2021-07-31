@@ -14,6 +14,8 @@ public class PlayerShipView : MonoBehaviour
 
     private PlayerShipcontroller playerShipcontroller;
 
+    private InputManager inputManager;
+
     private void Awake()
     {
         shipRb = GetComponent<Rigidbody>();
@@ -21,6 +23,7 @@ public class PlayerShipView : MonoBehaviour
     void Start()
     {
         playerShipcontroller = new PlayerShipcontroller(this);
+        inputManager = InputManager.Instance;
     }
 
     void Update()
@@ -29,17 +32,15 @@ public class PlayerShipView : MonoBehaviour
     }
     public void PlayerInput()
     {
-        float keyBoardHorizontal = Input.GetAxis("Horizontal");
-        float keyBoardVertical = Input.GetAxis("Vertical");
-        if (keyBoardHorizontal != 0 || keyBoardVertical != 0)
+        bool hasInput = false, mouseLeftClick = false;
+        inputManager.PcCheckInputs(ref hasInput, ref mouseLeftClick);
+        Vector3 movementInp = inputManager.PcKeyInputs(0);
+        if (hasInput)
         {
-            Vector3 movementInput = new Vector3(keyBoardHorizontal, keyBoardVertical, 0);
-            playerShipcontroller.ShipMovement(movementInput, shipRb, mvtSpeed);
-
-
+            playerShipcontroller.ShipMovement(movementInp, shipRb, mvtSpeed);
         }
 
-        if (Input.GetMouseButton(0))
+        if (mouseLeftClick)
             Shoot();
 
     }
