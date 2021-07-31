@@ -131,6 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 159235787}
   - component: {fileID: 159235786}
+  - component: {fileID: 159235788}
   m_Layer: 0
   m_Name: ShipService
   m_TagString: Untagged
@@ -150,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ebe3ad6f6cbc3e4ca545b5f1a9f1547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerShipView: {fileID: -1267940181457754785, guid: b70573978bfbc21459e5c2173d2a582e,
+  playerShipView: {fileID: 1961771432414210285, guid: 10401171d44ae8646b60290f3083121f,
     type: 3}
   spawnpoint: {x: -14.3, y: 0.5, z: 10}
 --- !u!4 &159235787
@@ -161,12 +162,40 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 159235785}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: -4.6, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &159235788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159235785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a96083fe2c41be48ac7ae946190272d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asteroidPrefab: {fileID: 5836730061732749469, guid: fa49e460baf435b4780da7196c2ab473,
+    type: 3}
+  spawnPos: {x: 15, y: 0.5, z: 10}
+  rotation: {x: 90, y: 90, z: 0}
+  enemy: {fileID: 0}
+  asterSpawnYPos:
+  - 11
+  - 5
+  - -0.4
+  - -6
+  - -2.6
+  - 9
+  - -9
+  - 7
+  - 3
+  - 1
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,62 +288,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &895885920
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 895885922}
-  - component: {fileID: 895885921}
-  m_Layer: 0
-  m_Name: EnemyService
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &895885921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 895885920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a96083fe2c41be48ac7ae946190272d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  asteroidPrefab: {fileID: 5836730061732749469, guid: fa49e460baf435b4780da7196c2ab473,
-    type: 3}
-  asterSpawnYPos:
-  - 11
-  - 5
-  - -0.4
-  - -6
-  - -2.6
-  - 9
-  - -9
-  - 7
-  - 3
-  - 1
---- !u!4 &895885922
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 895885920}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50.357643, y: 5.8896885, z: -2.613535}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,5 +458,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

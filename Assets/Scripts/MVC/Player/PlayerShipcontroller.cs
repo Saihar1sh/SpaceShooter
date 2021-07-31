@@ -4,7 +4,6 @@ public class PlayerShipcontroller
     public PlayerShipcontroller(PlayerShipView playerShipView)
     {
         playerShipView.GetPlayerController(this);
-        this.PlayerShipView = playerShipView;
     }
 
     public PlayerShipcontroller(PlayerShipView playerShipPrefab, PlayerShipModel playerShipModel, Vector3 pos, Quaternion quaternion)

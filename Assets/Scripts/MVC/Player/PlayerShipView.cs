@@ -7,8 +7,12 @@ public class PlayerShipView : MonoBehaviour
 {
     public float mvtSpeed, rotatingSpeed;
 
+    public int maxHealth = 100;
+
+    private int health;
+
     [SerializeField]
-    private Transform firePoint;
+    private Transform[] firePoints;
 
     private Rigidbody shipRb;
 
@@ -22,6 +26,7 @@ public class PlayerShipView : MonoBehaviour
     }
     void Start()
     {
+        health = maxHealth;
         playerShipcontroller = new PlayerShipcontroller(this);
         inputManager = InputManager.Instance;
     }
@@ -29,6 +34,7 @@ public class PlayerShipView : MonoBehaviour
     void Update()
     {
         PlayerInput();
+
     }
     public void PlayerInput()
     {
@@ -39,6 +45,8 @@ public class PlayerShipView : MonoBehaviour
         {
             playerShipcontroller.ShipMovement(movementInp, shipRb, mvtSpeed);
         }
+        else
+            shipRb.velocity = Vector3.zero;
 
         if (mouseLeftClick)
             Shoot();
@@ -47,7 +55,12 @@ public class PlayerShipView : MonoBehaviour
 
     private void Shoot()
     {
-        BulletService.Instance.SpawnBullet(firePoint, 1f);
+        BulletService.Instance.SpawnBullet(firePoints, 1f);
+    }
+
+    public void ModifyHealth(int value)
+    {
+        health += value;
     }
 
     public void GetPlayerController(PlayerShipcontroller _playerShipcontroller)
