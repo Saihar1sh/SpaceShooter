@@ -184,7 +184,7 @@ MonoBehaviour:
     type: 3}
   spawnPos: {x: 15, y: 0.5, z: 10}
   rotation: {x: 90, y: 90, z: 0}
-  enemy: {fileID: 0}
+  enemy: {fileID: -8234914247408159625, guid: b70573978bfbc21459e5c2173d2a582e, type: 3}
   asterSpawnYPos:
   - 11
   - 5
