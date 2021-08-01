@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class EnemyService : MonoBehaviour
 {
-    [SerializeField]
-    private AsteroidMovement asteroidPrefab;
 
+    [Header("Ship Details")]
     [SerializeField]
-    private Vector3 spawnPos, rotation;
+    private Vector3 spawnPos;
+    [SerializeField]
+    private Vector3 rotation;
 
     public EnemyView enemy;
     public EnemyController EnemyController;
     public EnemyModel enemyModel;
+
+    private bool shipCreated;
+
+    [SerializeField]
+    [Tooltip("Must atleast be 2")]
+    private Vector3[] shipPositions;
+
+    [Header("Asteriod Details")]
+    [SerializeField]
+    private AsteroidMovement asteroidPrefab;
 
     private bool asteriodCreated;
 
@@ -23,15 +34,59 @@ public class EnemyService : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnEnemyShip(spawnPos, rotation);
+        Destroy(gameObject, 20f);                               //max lifetime
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (!asteriodCreated)
+        //if (!asteriodCreated)                                             //asteriods will be created continously in time intervals
         //StartCoroutine(AsteriodDelay());
+
+        if (!shipCreated)
+            StartCoroutine(SpawnEnemyShipDelay(2));
     }
+
+    private void SpawnEnemyWithPath(EnemyPath enemyPath)
+    {
+        Vector3 initPos = shipPositions[0];
+
+
+        switch (enemyPath)
+        {
+            case EnemyPath.None:
+                for (int i = 0; i < shipPositions.Length; i++)
+                {
+                    SpawnEnemyShip(shipPositions[i]);
+                }
+                break;
+            case EnemyPath.Right_V:
+                for (int i = 0; i < shipPositions.Length; i++)
+                {
+                    if (i < shipPositions.Length / 2)
+                    {
+                        initPos.x--;
+                        initPos.y -= 2;
+                    }
+                    else
+                    {
+                        initPos.x++;
+                        initPos.y += 2;
+                    }
+                    shipPositions[i] = initPos;
+                    SpawnEnemyShip(shipPositions[i]);
+                }
+
+                break;
+            case EnemyPath.Left_V:
+                break;
+            case EnemyPath.Right_U:
+                break;
+            default:
+                break;
+        }
+    }
+
 
     private void SpawnAsteriodsRand(int posX)
     {
@@ -40,9 +95,9 @@ public class EnemyService : MonoBehaviour
         Instantiate(asteroidPrefab, randPos, Quaternion.identity);
     }
 
-    private EnemyController SpawnEnemyShip(Vector3 pos, Vector3 rot)
+    private EnemyController SpawnEnemyShip(Vector3 pos)
     {
-        EnemyController enemyController = new EnemyController(enemy, enemyModel, pos, Quaternion.Euler(rot.x, rot.y, rot.z));
+        EnemyController enemyController = new EnemyController(enemy, enemyModel, pos, enemy.transform.rotation);
         return enemyController;
     }
 
@@ -58,4 +113,20 @@ public class EnemyService : MonoBehaviour
         }
         asteriodCreated = false;
     }
+
+    IEnumerator SpawnEnemyShipDelay(float secs)
+    {
+        shipCreated = true;
+        yield return new WaitForSeconds(secs);
+        SpawnEnemyWithPath(EnemyPath.None);
+        shipCreated = false;
+    }
+}
+public enum EnemyPath
+{
+    None,
+    Right_V,
+    Left_V,
+    Right_U,
+
 }

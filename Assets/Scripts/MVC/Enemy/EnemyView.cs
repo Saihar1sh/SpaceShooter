@@ -35,7 +35,8 @@ public class EnemyView : MonoBehaviour
 
     private void Movement()
     {
-        rb.velocity = transform.right * -1 * mvtSpeed;
+        rb.velocity = transform.up * -1 * mvtSpeed;                                 //it moves along green axis which is forward according to prefab
+
     }
 
     public void GetEnemyController(EnemyController _enemyController)
@@ -48,7 +49,7 @@ public class EnemyView : MonoBehaviour
     {
         canShoot = false;
         yield return new WaitForSeconds(1f);
-        BulletService.Instance.SpawnBullet(firePoints, 0f);
+        BulletService.Instance.SpawnBullet(this.firePoints, 1f);
         canShoot = true;
     }
 }

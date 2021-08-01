@@ -5,9 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerShipView : MonoBehaviour
 {
+    [Header("Variables")]
+    public int maxHealth = 100;
     public float mvtSpeed, rotatingSpeed;
 
-    public int maxHealth = 100;
 
     private int health;
 

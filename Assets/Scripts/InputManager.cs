@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class InputManager : MonoSingletonGeneric<InputManager>
 {
-    public Vector3 vector;
-
-    private int p = 0;
 
     // Start is called before the first frame update
     void Start()
