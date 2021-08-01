@@ -7,12 +7,11 @@ public class BulletController : MonoBehaviour
 {
     private Rigidbody rb;
 
-    public bool flipBullet = false;
-
-    private int flipVar = 1;
-
     [SerializeField]
     private float speed = 2f, maxLifetime = 5f;
+
+    [SerializeField]
+    private int damage = 10;
 
     private void Awake()
     {
@@ -20,23 +19,24 @@ public class BulletController : MonoBehaviour
         Destroy(gameObject, maxLifetime);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //flipVar = flipBullet ? -1 : 1;
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        rb.velocity = transform.right * speed * flipVar;
+        rb.velocity = transform.right * speed;
 
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("ujd");
+            if (other.GetComponent<EnemyView>() != null)
+            {
+                other.GetComponent<EnemyView>().ModifyHealth(-damage);
+            }
+
+            if (other.GetComponent<AsteroidMovement>() != null)
+            {
+                other.GetComponent<AsteroidMovement>().ExplodeAsteriod();
+            }
         }
 
     }

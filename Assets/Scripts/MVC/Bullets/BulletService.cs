@@ -39,9 +39,8 @@ public class BulletService : MonoSingletonGeneric<BulletService>
         canShoot = false;
         for (int i = 0; i < firePoints.Length; i++)
         {
-
             Instantiate(blueBulletPrefab, firePoints[i].position, firePoints[i].rotation);
-            Debug.Log(firePoints[i].position, firePoints[i]);
+
         }
         yield return new WaitForSeconds(delay);
         canShoot = true;
@@ -50,8 +49,7 @@ public class BulletService : MonoSingletonGeneric<BulletService>
     {
         canEShoot = false;
         BulletController bullet = Instantiate(redBulletPrefab, firePosition, Quaternion.Euler(0, 180, 0));
-        //yield return new WaitForSeconds(delay);
-        yield return null;
+        yield return new WaitForSeconds(delay);
         canEShoot = true;
     }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -39,12 +40,28 @@ public class PlayerShipView : MonoBehaviour
     void Update()
     {
         PlayerInput();
-        healthBar.SetHealth(health);
+        HealthCheck();
     }
+
+    private void HealthCheck()
+    {
+        healthBar.SetHealth(health);
+        if (health <= 0)
+            health = 0;
+
+        if (health == 0)
+        {
+            ParticleService.Instance.CommenceExplosion(transform);
+            Destroy(gameObject);
+        }
+    }
+
     public void PlayerInput()
     {
-        bool hasInput = false, mouseLeftClick = false;
-        inputManager.PcCheckInputs(ref hasInput, ref mouseLeftClick);
+#if UNITY_STANDALONE || UNITY_EDITOR    //if the current platform is not mobile, setting mouse handling 
+
+        bool hasInput = false, mouseLeftClicked = false;
+        inputManager.PcCheckInputs(ref hasInput, ref mouseLeftClicked);
         Vector3 movementInp = inputManager.PcKeyInputs(0);
         if (hasInput)
         {
@@ -53,9 +70,17 @@ public class PlayerShipView : MonoBehaviour
         else
             shipRb.velocity = Vector3.zero;
 
-        if (mouseLeftClick)
+        if (mouseLeftClicked)
             Shoot();
 
+#endif
+#if UNITY_IOS || UNITY_ANDROID //if current platform is mobile, 
+
+
+        Vector3 _movementInput = inputManager.TouchInputs(0);
+
+
+#endif
     }
 
     private void Shoot()

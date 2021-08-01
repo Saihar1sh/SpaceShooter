@@ -34,7 +34,7 @@ public class EnemyService : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, 20f);                               //max lifetime
+
     }
 
     // Update is called once per frame

@@ -6,7 +6,9 @@ public class EnemyView : MonoBehaviour
 {
     public float mvtSpeed = 5f;
 
-    public int damage = 10;
+    public int damage = 10, maxHealth = 100;
+
+    private float health;
 
     private bool canShoot = true;
 
@@ -24,15 +26,32 @@ public class EnemyView : MonoBehaviour
 
     void Start()
     {
-
+        health = maxHealth;
+        Destroy(gameObject, 15f);                               //max lifetime
     }
 
     // Update is called once per frame
     void Update()
     {
         Movement();
+        HealthCheck();
         if (canShoot)
             StartCoroutine(LazerDelay());
+    }
+    private void HealthCheck()
+    {
+        if (health <= 0)
+            health = 0;
+
+        if (health == 0)
+        {
+            ParticleService.Instance.CommenceExplosion(transform);
+            Destroy(gameObject);
+        }
+    }
+    public void ModifyHealth(int value)
+    {
+        health += value;
     }
 
     private void Movement()
@@ -40,7 +59,6 @@ public class EnemyView : MonoBehaviour
         rb.velocity = transform.up * -1 * mvtSpeed;                                 //it moves along green axis which is forward according to prefab
 
     }
-
     public void GetEnemyController(EnemyController _enemyController)
     {
         this.enemyController = _enemyController;
@@ -56,10 +74,11 @@ public class EnemyView : MonoBehaviour
     }
 
 
+
     IEnumerator LazerDelay()
     {
         canShoot = false;
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(10);
         BulletService.Instance.SpawnEnemyBullet(firePoint.position, 1f);
         canShoot = true;
     }

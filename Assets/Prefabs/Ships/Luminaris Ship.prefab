@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: -112623964495155745}
   m_Layer: 0
   m_Name: Luminaris Ship
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -421,6 +421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mvtSpeed: 5
   damage: 10
+  maxHealth: 100
   firePoint: {fileID: 8747718137201446597}
 --- !u!64 &6497235399436243926
 MeshCollider:

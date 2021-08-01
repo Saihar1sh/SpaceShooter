@@ -38,4 +38,10 @@ public class AsteroidMovement : MonoBehaviour
             playerShip.ModifyHealth(-damage);
         }
     }
+
+    public void ExplodeAsteriod()
+    {
+        ParticleService.Instance.CommenceExplosion(transform);
+        Destroy(gameObject);
+    }
 }
