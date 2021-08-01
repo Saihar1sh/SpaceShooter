@@ -420,8 +420,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mvtSpeed: 5
-  firePoints:
-  - {fileID: 8747718137201446597}
+  damage: 10
+  firePoint: {fileID: 8747718137201446597}
 --- !u!64 &6497235399436243926
 MeshCollider:
   m_ObjectHideFlags: 0

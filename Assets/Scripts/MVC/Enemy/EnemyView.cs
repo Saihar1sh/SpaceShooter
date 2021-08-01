@@ -12,8 +12,8 @@ public class EnemyView : MonoBehaviour
 
     private Rigidbody rb;
 
-    [SerializeField]
-    private Transform[] firePoints;
+
+    private Transform firePoint;
 
     private EnemyController enemyController;
 
@@ -60,7 +60,7 @@ public class EnemyView : MonoBehaviour
     {
         canShoot = false;
         yield return new WaitForSeconds(0);
-        BulletService.Instance.SpawnBullet(this.firePoints, 1f);
+        BulletService.Instance.SpawnEnemyBullet(transform.position, 1f);
         canShoot = true;
     }
 }
