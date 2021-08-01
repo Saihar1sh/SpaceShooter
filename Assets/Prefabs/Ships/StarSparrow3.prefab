@@ -384,12 +384,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b801587a697c49047b2c41ca7bee0300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
   mvtSpeed: 5
   rotatingSpeed: 2
-  maxHealth: 100
   firePoints:
   - {fileID: 6577811550696590572}
   - {fileID: 2624362576267669398}
+  healthBar: {fileID: 0}
 --- !u!1 &3489826305336813380
 GameObject:
   m_ObjectHideFlags: 0

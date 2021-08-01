@@ -19,6 +19,9 @@ public class PlayerShipView : MonoBehaviour
 
     private PlayerShipcontroller playerShipcontroller;
 
+    [SerializeField]
+    private HealthBar healthBar;
+
     private InputManager inputManager;
 
     private void Awake()
@@ -30,12 +33,13 @@ public class PlayerShipView : MonoBehaviour
         health = maxHealth;
         playerShipcontroller = new PlayerShipcontroller(this);
         inputManager = InputManager.Instance;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     void Update()
     {
         PlayerInput();
-
+        healthBar.SetHealth(health);
     }
     public void PlayerInput()
     {

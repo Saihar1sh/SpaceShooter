@@ -15,7 +15,7 @@ public class PlayerShipService : MonoSingletonGeneric<PlayerShipService>
     // Start is called before the first frame update
     void Start()
     {
-        CreatePlayerShip();
+        //CreatePlayerShip();
     }
 
     // Update is called once per frame
@@ -24,9 +24,10 @@ public class PlayerShipService : MonoSingletonGeneric<PlayerShipService>
 
     }
 
-    public PlayerShipcontroller CreatePlayerShip()
-    {
-        PlayerShipcontroller playerShipcontroller = new PlayerShipcontroller(playerShipView, shipModel, spawnpoint, Quaternion.Euler(0, 90, 0));
-        return playerShipcontroller;
-    }
+    /*    public PlayerShipcontroller CreatePlayerShip()
+        {
+            PlayerShipcontroller playerShipcontroller = new PlayerShipcontroller(playerShipView, shipModel, spawnpoint, Quaternion.Euler(0, 90, 0));
+            return playerShipcontroller;
+        }
+    */
 }
