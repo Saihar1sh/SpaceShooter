@@ -27,10 +27,10 @@ public class BulletService : MonoSingletonGeneric<BulletService>
             StartCoroutine(ShootDelay(_firePoints, _delay));
     }
 
-    public void SpawnEnemyBullet(Vector3 _shipPos, float _delay)
+    public void SpawnEnemyBullet(Vector3 _firePos, float _delay)
     {
         if (canEShoot)
-            StartCoroutine(ShootEnemyDelay(_shipPos, _delay));
+            StartCoroutine(ShootEnemyDelay(_firePos, _delay));
     }
 
 
@@ -46,12 +46,12 @@ public class BulletService : MonoSingletonGeneric<BulletService>
         yield return new WaitForSeconds(delay);
         canShoot = true;
     }
-    IEnumerator ShootEnemyDelay(Vector3 shipPosition, float delay)
+    IEnumerator ShootEnemyDelay(Vector3 firePosition, float delay)
     {
         canEShoot = false;
-        shipPosition.x -= 3f;
-        Instantiate(redBulletPrefab, shipPosition, Quaternion.Euler(0, 180, 0));
-        yield return new WaitForSeconds(delay);
+        BulletController bullet = Instantiate(redBulletPrefab, firePosition, Quaternion.Euler(0, 180, 0));
+        //yield return new WaitForSeconds(delay);
+        yield return null;
         canEShoot = true;
     }
 

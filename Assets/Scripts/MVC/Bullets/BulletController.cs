@@ -7,6 +7,10 @@ public class BulletController : MonoBehaviour
 {
     private Rigidbody rb;
 
+    public bool flipBullet = false;
+
+    private int flipVar = 1;
+
     [SerializeField]
     private float speed = 2f, maxLifetime = 5f;
 
@@ -19,12 +23,13 @@ public class BulletController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb.velocity = transform.right * speed;
+        //flipVar = flipBullet ? -1 : 1;
     }
 
     // Update is called once per frame
     void Update()
     {
+        rb.velocity = transform.right * speed * flipVar;
 
     }
     private void OnTriggerEnter(Collider other)
