@@ -180,11 +180,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a96083fe2c41be48ac7ae946190272d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPos: {x: 25, y: 0.5, z: 10}
+  rotation: {x: -90, y: 0, z: -90}
+  enemy: {fileID: -8234914247408159625, guid: b70573978bfbc21459e5c2173d2a582e, type: 3}
+  shipPositions:
+  - {x: 25, y: 9, z: 10}
+  - {x: 24, y: 7, z: 10}
+  - {x: 23, y: 5, z: 10}
+  - {x: 24, y: 3, z: 10}
+  - {x: 25, y: 1, z: 10}
   asteroidPrefab: {fileID: 5836730061732749469, guid: fa49e460baf435b4780da7196c2ab473,
     type: 3}
-  spawnPos: {x: 15, y: 0.5, z: 10}
-  rotation: {x: 90, y: 90, z: 0}
-  enemy: {fileID: -8234914247408159625, guid: b70573978bfbc21459e5c2173d2a582e, type: 3}
   asterSpawnYPos:
   - 11
   - 5
@@ -445,7 +451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d689401acf0d8478c80a4f4e2f5756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vector: {x: 0, y: 0, z: 0}
 --- !u!4 &1969291133
 Transform:
   m_ObjectHideFlags: 0

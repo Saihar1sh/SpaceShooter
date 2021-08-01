@@ -6,6 +6,8 @@ public class EnemyView : MonoBehaviour
 {
     public float mvtSpeed = 5f;
 
+    public int damage = 10;
+
     private bool canShoot = true;
 
     private Rigidbody rb;
@@ -44,11 +46,20 @@ public class EnemyView : MonoBehaviour
         this.enemyController = _enemyController;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<PlayerShipView>() != null)
+        {
+            PlayerShipView playerShip = collision.gameObject.GetComponent<PlayerShipView>();
+            playerShip.ModifyHealth(-damage);
+        }
+    }
+
 
     IEnumerator LazerDelay()
     {
         canShoot = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0);
         BulletService.Instance.SpawnBullet(this.firePoints, 1f);
         canShoot = true;
     }

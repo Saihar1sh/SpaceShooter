@@ -40,16 +40,16 @@ public class EnemyService : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (!asteriodCreated)                                             //asteriods will be created continously in time intervals
-        //StartCoroutine(AsteriodDelay());
+        if (!asteriodCreated)                                             //asteriods will be created continously in time intervals
+            StartCoroutine(AsteriodDelay());
 
         if (!shipCreated)
-            StartCoroutine(SpawnEnemyShipDelay(2));
+            StartCoroutine(SpawnEnemyShipDelay(10));
     }
 
     private void SpawnEnemyWithPath(EnemyPath enemyPath)
     {
-        Vector3 initPos = shipPositions[0];
+        Vector3 initPos = new Vector3(25, 11, 10);                      //top right corner
 
 
         switch (enemyPath)
@@ -61,21 +61,21 @@ public class EnemyService : MonoBehaviour
                 }
                 break;
             case EnemyPath.Right_V:
-                for (int i = 0; i < shipPositions.Length; i++)
-                {
-                    if (i < shipPositions.Length / 2)
-                    {
-                        initPos.x--;
-                        initPos.y -= 2;
-                    }
-                    else
-                    {
-                        initPos.x++;
-                        initPos.y += 2;
-                    }
-                    shipPositions[i] = initPos;
-                    SpawnEnemyShip(shipPositions[i]);
-                }
+                /* for (int i = 0; i < shipPositions.Length; i++)
+                 {
+                     if (i < shipPositions.Length / 2)
+                     {
+                         initPos.x--;
+                         initPos.y -= 2;
+                     }
+                     else
+                     {
+                         initPos.x++;
+                         initPos.y += 2;
+                     }
+                     shipPositions[i] = initPos;
+                     SpawnEnemyShip(shipPositions[i]);
+                 }*/
 
                 break;
             case EnemyPath.Left_V:

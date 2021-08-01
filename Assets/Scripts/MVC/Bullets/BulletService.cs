@@ -33,6 +33,7 @@ public class BulletService : MonoSingletonGeneric<BulletService>
         for (int i = 0; i < firePoints.Length; i++)
         {
             Instantiate(bulletPrefab, firePoints[i].position, firePoints[i].rotation);
+            Debug.Log(firePoints[i].position, firePoints[i]);
         }
         yield return new WaitForSeconds(delay);
         canShoot = true;
