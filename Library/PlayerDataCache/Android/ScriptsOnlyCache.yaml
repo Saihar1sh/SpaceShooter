@@ -757,7 +757,7 @@ ScriptsOnlyBuild:
     className: ParticleService
   - hash:
       serializedVersion: 2
-      Hash: 995fbaca19fb6314accbf88302612d03
+      Hash: aea6f58ef4e4d942d0857c7af1065cdc
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIManager
