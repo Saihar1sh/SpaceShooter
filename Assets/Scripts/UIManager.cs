@@ -35,18 +35,20 @@ public class UIManager : MonoSingletonGeneric<UIManager>
     {
         InputManager.Instance.SetJoystick(floatingJoystick);
         GameoverUI(false);
+        highScore = PlayerPrefs.GetInt("Highscore");
     }
     public void ScoreIncreament(int scoreIncrement)
     {
         score += scoreIncrement;
         scoreTxt.text = "Score : " + score;
         scoreGameOverTxt.text = "Score : " + score;
+        highScore = Mathf.Max(highScore, score);
+        highscoreTxt.text = "High Score : " + highScore;
+        PlayerPrefs.SetInt("Highscore", highScore);
     }
     public void GameoverUI(bool o)
     {
         gameoverUIImg.gameObject.SetActive(o);
-        highScore = Mathf.Max(highScore, score);
-
     }
     private void RetryMenu()
     {

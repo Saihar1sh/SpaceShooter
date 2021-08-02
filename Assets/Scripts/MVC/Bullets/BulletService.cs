@@ -47,23 +47,4 @@ public class BulletService : MonoSingletonGeneric<BulletService>
     }
 
 
-    /*    IEnumerator ShootDelay(Transform[] firePoints, float delay)
-        {
-            canShoot = false;
-            for (int i = 0; i < firePoints.Length; i++)
-            {
-                Instantiate(blueBulletPrefab, firePoints[i].position, firePoints[i].rotation);
-
-            }
-            yield return new WaitForSeconds(delay);
-            canShoot = true;
-        }
-        IEnumerator ShootEnemyDelay(Vector3 firePosition, float delay)
-        {
-            canEShoot = false;
-            BulletController bullet = Instantiate(redBulletPrefab, firePosition, Quaternion.Euler(0, 180, 0));
-            yield return new WaitForSeconds(delay);
-            canEShoot = true;
-        }
-    */
 }

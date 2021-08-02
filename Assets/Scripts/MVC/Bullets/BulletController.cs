@@ -8,7 +8,7 @@ public class BulletController : MonoBehaviour
     private Rigidbody rb;
 
     [SerializeField]
-    private float speed = 2f, maxLifetime = 5f;
+    private float speed = 2f, maxLifetime = 4f;
 
     [SerializeField]
     private int damage = 10;
@@ -28,6 +28,7 @@ public class BulletController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+
         switch (lazerTypes)
         {
             case LazerTypes.None:
@@ -45,17 +46,18 @@ public class BulletController : MonoBehaviour
                         other.GetComponent<AsteroidMovement>().ExplodeAsteriod();
                     }
                 }
+
                 break;
             case LazerTypes.Red:
                 if (other.gameObject.tag == "Player")
                 {
                     other.GetComponent<PlayerShipView>().ModifyHealth(-damage);
                 }
+
                 break;
             default:
                 break;
         }
-
 
     }
 }

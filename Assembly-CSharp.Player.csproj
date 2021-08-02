@@ -625,6 +625,7 @@
     <Compile Include="Assets\Scripts\MVC\Player\PlayerShipcontroller.cs" />
     <Compile Include="Assets\Scripts\MonoSingletonGeneric.cs" />
     <Compile Include="Assets\Scripts\ParticleService.cs" />
+    <Compile Include="Assets\Scripts\StartMenu.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />
   </ItemGroup>
   <ItemGroup>

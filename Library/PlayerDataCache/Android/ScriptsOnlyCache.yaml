@@ -13,6 +13,7 @@ ScriptsOnlyBuild:
     - ParticleService
     - PlayerShipService
     - PlayerShipView
+    - StartMenu
     - UIManager
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -60,8 +61,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
-    - Class: 49
-      Script: {instanceID: 0}
     - Class: 54
       Script: {instanceID: 0}
     - Class: 64
@@ -93,8 +92,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11836}
     - Class: 114
-      Script: {instanceID: 11862}
-    - Class: 114
       Script: {instanceID: 11978}
     - Class: 114
       Script: {instanceID: 11996}
@@ -107,8 +104,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12458}
     - Class: 114
-      Script: {instanceID: 12472}
-    - Class: 114
       Script: {instanceID: 12490}
     - Class: 114
       Script: {instanceID: 12506}
@@ -118,8 +113,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12670}
     - Class: 114
       Script: {instanceID: 12732}
-    - Class: 114
-      Script: {instanceID: 12882}
     - Class: 114
       Script: {instanceID: 13084}
     - Class: 114
@@ -149,6 +142,75 @@ ScriptsOnlyBuild:
     - Class: 205
       Script: {instanceID: 0}
     - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/StartMenu.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11228}
+    - Class: 114
+      Script: {instanceID: 11248}
+    - Class: 114
+      Script: {instanceID: 11836}
+    - Class: 114
+      Script: {instanceID: 11862}
+    - Class: 114
+      Script: {instanceID: 12230}
+    - Class: 114
+      Script: {instanceID: 12458}
+    - Class: 114
+      Script: {instanceID: 12472}
+    - Class: 114
+      Script: {instanceID: 12670}
+    - Class: 114
+      Script: {instanceID: 12732}
+    - Class: 114
+      Script: {instanceID: 12882}
+    - Class: 114
+      Script: {instanceID: 13092}
+    - Class: 114
+      Script: {instanceID: 74538}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -323,7 +385,7 @@ ScriptsOnlyBuild:
     className: TMP_SubMeshUI
   - hash:
       serializedVersion: 2
-      Hash: 9966c2b8fb29421be8f3464baf1ef5e2
+      Hash: 9df74160c4cb9a09e84ef08ce5033494
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BulletController
@@ -395,7 +457,7 @@ ScriptsOnlyBuild:
     className: ScrollRect
   - hash:
       serializedVersion: 2
-      Hash: 2564cd4af79a8dc9270d534a0c816fec
+      Hash: d990e45765e8a6acb31786ef5d2e502d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerShipService
@@ -443,7 +505,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: f29a70023febdc0ef0c77be4d675a9c5
+      Hash: 3f571c1333d815c002909709ba87a5a0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemyView
@@ -635,7 +697,7 @@ ScriptsOnlyBuild:
     className: Dropdown
   - hash:
       serializedVersion: 2
-      Hash: 065024ca3893fe09623f090728bae8a9
+      Hash: ce6da756af0b4ac2b83c8171a147081b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemyService
@@ -695,11 +757,18 @@ ScriptsOnlyBuild:
     className: ParticleService
   - hash:
       serializedVersion: 2
-      Hash: 2420675e41574d6b1f9dd33dd5c7811f
+      Hash: 995fbaca19fb6314accbf88302612d03
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIManager
+  - hash:
+      serializedVersion: 2
+      Hash: 2a04cc6742e21bdbb7dc44246fb9d3db
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: StartMenu
   platform: 13
   scenePathNames:
+  - Assets/Scenes/StartMenu.unity
   - Assets/Scenes/Game.unity
-  playerPath: C:/Projects/SpaceShooter/test0.apk
+  playerPath: C:/Projects/SpaceShooter/SpaceShooter.apk
