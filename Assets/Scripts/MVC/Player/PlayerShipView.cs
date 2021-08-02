@@ -5,14 +5,21 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerShipView : MonoBehaviour
 {
+    [Header("Variables")]
+    public int maxHealth = 100;
     public float mvtSpeed, rotatingSpeed;
 
+
+    private int health;
+
     [SerializeField]
-    private Transform firePoint;
+    private Transform[] firePoints;
 
     private Rigidbody shipRb;
 
     private PlayerShipcontroller playerShipcontroller;
+
+    private InputManager inputManager;
 
     private void Awake()
     {
@@ -20,30 +27,41 @@ public class PlayerShipView : MonoBehaviour
     }
     void Start()
     {
+        health = maxHealth;
         playerShipcontroller = new PlayerShipcontroller(this);
+        inputManager = InputManager.Instance;
     }
 
     void Update()
     {
         PlayerInput();
+
     }
     public void PlayerInput()
     {
-        float keyBoardHorizontal = Input.GetAxis("Horizontal");
-        float keyBoardVertical = Input.GetAxis("Vertical");
-        if (keyBoardHorizontal != 0 || keyBoardVertical != 0)
+        bool hasInput = false, mouseLeftClick = false;
+        inputManager.PcCheckInputs(ref hasInput, ref mouseLeftClick);
+        Vector3 movementInp = inputManager.PcKeyInputs(0);
+        if (hasInput)
         {
-            Vector3 movementInput = new Vector3(keyBoardHorizontal, keyBoardVertical, 0);
-            playerShipcontroller.ShipMovement(movementInput, shipRb, mvtSpeed);
+            playerShipcontroller.ShipMovement(movementInp, shipRb, mvtSpeed);
         }
+        else
+            shipRb.velocity = Vector3.zero;
 
-        if (Input.GetMouseButton(0))
+        if (mouseLeftClick)
             Shoot();
+
     }
 
     private void Shoot()
     {
-        BulletService.Instance.SpawnBullet(firePoint, 1f);
+        BulletService.Instance.SpawnBullet(firePoints, 1f);
+    }
+
+    public void ModifyHealth(int value)
+    {
+        health += value;
     }
 
     public void GetPlayerController(PlayerShipcontroller _playerShipcontroller)
