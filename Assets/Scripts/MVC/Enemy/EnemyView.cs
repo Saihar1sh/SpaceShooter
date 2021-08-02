@@ -10,12 +10,12 @@ public class EnemyView : MonoBehaviour
 
     private float health;
 
-    private bool canShoot = true;
+    public bool canShoot = true;
 
     private Rigidbody rb;
 
     [SerializeField]
-    private Transform firePoint;
+    private Transform[] firePoints;
 
     private EnemyController enemyController;
 
@@ -26,6 +26,7 @@ public class EnemyView : MonoBehaviour
 
     void Start()
     {
+        EnemyService.Instance.enemyViews.Add(this);
         health = maxHealth;
         Destroy(gameObject, 15f);                               //max lifetime
     }
@@ -36,7 +37,7 @@ public class EnemyView : MonoBehaviour
         Movement();
         HealthCheck();
         if (canShoot)
-            StartCoroutine(LazerDelay());
+            StartCoroutine(LazerDelay(1));
     }
     private void HealthCheck()
     {
@@ -75,11 +76,16 @@ public class EnemyView : MonoBehaviour
 
 
 
-    IEnumerator LazerDelay()
+    IEnumerator LazerDelay(float secs)
     {
         canShoot = false;
-        yield return new WaitForSeconds(10);
-        BulletService.Instance.SpawnEnemyBullet(firePoint.position, 1f);
+        yield return new WaitForSeconds(secs);
+        BulletService.Instance.SpawnEnemyBullet(firePoints);
         canShoot = true;
+    }
+    private void OnDestroy()
+    {
+        UIManager.Instance.ScoreIncreament(20);
+        EnemyService.Instance.enemyViews.Remove(this);
     }
 }

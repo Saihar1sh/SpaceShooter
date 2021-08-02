@@ -10,8 +10,8 @@ public class PlayerShipView : MonoBehaviour
     public int maxHealth = 100;
     public float mvtSpeed, rotatingSpeed;
 
-
     private int health;
+    private bool canShoot = true;
 
     [SerializeField]
     private Transform[] firePoints;
@@ -28,12 +28,15 @@ public class PlayerShipView : MonoBehaviour
     private void Awake()
     {
         shipRb = GetComponent<Rigidbody>();
+
     }
     void Start()
     {
+        PlayerShipService.Instance.playerShips.Add(this);
         health = maxHealth;
-        playerShipcontroller = new PlayerShipcontroller(this);
         inputManager = InputManager.Instance;
+        playerShipcontroller = new PlayerShipcontroller(this);
+        UIManager.Instance.Start();
         healthBar.SetMaxHealth(maxHealth);
     }
 
@@ -41,6 +44,10 @@ public class PlayerShipView : MonoBehaviour
     {
         PlayerInput();
         HealthCheck();
+
+        if (canShoot)
+            StartCoroutine(ShootDelay(1));
+
     }
 
     private void HealthCheck()
@@ -52,40 +59,35 @@ public class PlayerShipView : MonoBehaviour
         if (health == 0)
         {
             ParticleService.Instance.CommenceExplosion(transform);
+            PlayerShipService.playerIsDead = true;
+            UIManager.Instance.GameoverUI(true);
             Destroy(gameObject);
         }
     }
 
     public void PlayerInput()
     {
-#if UNITY_STANDALONE || UNITY_EDITOR    //if the current platform is not mobile, setting mouse handling 
-
-        bool hasInput = false, mouseLeftClicked = false;
-        inputManager.PcCheckInputs(ref hasInput, ref mouseLeftClicked);
+        //Pc inputs
+        bool hasKeyBInput = false;
+        inputManager.PcCheckInputs(ref hasKeyBInput);
         Vector3 movementInp = inputManager.PcKeyInputs(0);
-        if (hasInput)
+        if (hasKeyBInput)
         {
             playerShipcontroller.ShipMovement(movementInp, shipRb, mvtSpeed);
         }
         else
             shipRb.velocity = Vector3.zero;
 
-        if (mouseLeftClicked)
-            Shoot();
-
-#endif
-#if UNITY_IOS || UNITY_ANDROID //if current platform is mobile, 
-
-
+        //touch Inputs
+        bool _hasInput = false;
+        inputManager.TouchInputsCheck(ref _hasInput);
         Vector3 _movementInput = inputManager.TouchInputs(0);
+        if (_hasInput)
+            playerShipcontroller.ShipMovement(_movementInput, shipRb, mvtSpeed);
+        else
+            shipRb.velocity = Vector3.zero;
 
 
-#endif
-    }
-
-    private void Shoot()
-    {
-        BulletService.Instance.SpawnBullet(firePoints, 1f);
     }
 
     public void ModifyHealth(int value)
@@ -97,4 +99,13 @@ public class PlayerShipView : MonoBehaviour
     {
         this.playerShipcontroller = _playerShipcontroller;
     }
+
+    IEnumerator ShootDelay(float secs)
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(secs);
+        BulletService.Instance.SpawnBullet(firePoints);
+        canShoot = true;
+    }
+
 }

@@ -3,41 +3,61 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoSingletonGeneric<UIManager>
 {
-    private TextMeshProUGUI scoreTxt;
+    [SerializeField]
+    private TextMeshProUGUI scoreTxt, scoreGameOverTxt, highscoreTxt;
 
+    [SerializeField]
+    private Image gameoverUIImg;
+
+    private int score = 0, highScore;
+
+    [SerializeField]
     private Joystick floatingJoystick, fixedJoystick;
 
-    private bool floJoy = false, fixJoy = false;                                //if floating joystick is present, if fixed joystick is present respectively.
+    [SerializeField]
+    private Button retryBtn, startMenuBtn, exitBtn;
+
+    private bool isShooting = false;
 
     protected override void Awake()
     {
         base.Awake();
-        if (FindObjectOfType<FloatingJoystick>() != null)
-        {
-            floatingJoystick = FindObjectOfType<FloatingJoystick>();
-            floJoy = true;
-        }
-        if (FindObjectOfType<FixedJoystick>() != null)
-        {
-            fixedJoystick = FindObjectOfType<FixedJoystick>();
-            fixJoy = true;
-        }
-
+        retryBtn.onClick.AddListener(RetryMenu);
+        startMenuBtn.onClick.AddListener(LoadStartMenu);
+        exitBtn.onClick.AddListener(Quit);
     }
 
-
-    // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         InputManager.Instance.SetJoystick(floatingJoystick);
+        GameoverUI(false);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void ScoreIncreament(int scoreIncrement)
     {
+        score += scoreIncrement;
+        scoreTxt.text = "Score : " + score;
+        scoreGameOverTxt.text = "Score : " + score;
+    }
+    public void GameoverUI(bool o)
+    {
+        gameoverUIImg.gameObject.SetActive(o);
+        highScore = Mathf.Max(highScore, score);
 
+    }
+    private void RetryMenu()
+    {
+        SceneManager.LoadScene(1);
+    }
+    private void LoadStartMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+    private void Quit()
+    {
+        Application.Quit();
     }
 }

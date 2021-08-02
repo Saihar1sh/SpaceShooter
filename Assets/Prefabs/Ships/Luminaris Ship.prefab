@@ -422,7 +422,8 @@ MonoBehaviour:
   mvtSpeed: 5
   damage: 10
   maxHealth: 100
-  firePoint: {fileID: 8747718137201446597}
+  firePoints:
+  - {fileID: 8747718137201446597}
 --- !u!64 &6497235399436243926
 MeshCollider:
   m_ObjectHideFlags: 0

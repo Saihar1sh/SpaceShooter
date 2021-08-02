@@ -15,6 +15,7 @@ public class AsteroidMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        EnemyService.Instance.asteroidsObjs.Add(this);
         rb = GetComponent<Rigidbody>();
         Destroy(gameObject, 15f);
     }
@@ -42,6 +43,8 @@ public class AsteroidMovement : MonoBehaviour
     public void ExplodeAsteriod()
     {
         ParticleService.Instance.CommenceExplosion(transform);
+        UIManager.Instance.ScoreIncreament(10);
+        EnemyService.Instance.asteroidsObjs.Remove(this);
         Destroy(gameObject);
     }
 }

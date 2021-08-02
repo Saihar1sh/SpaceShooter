@@ -5,17 +5,11 @@ using UnityEngine;
 public class InputManager : MonoSingletonGeneric<InputManager>
 {
     private Joystick joystick;
+    private bool shootBtnClick;
 
-    void Update()
-    {
-
-    }
-
-    public void PcCheckInputs(ref bool _hasInput, ref bool _mouseLeftClick)
+    public void PcCheckInputs(ref bool _hasInput)
     {
         _hasInput = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
-        _mouseLeftClick = Input.GetMouseButton(0);
-
     }
 
     public Vector3 PcKeyInputs(float zPos)
@@ -30,6 +24,12 @@ public class InputManager : MonoSingletonGeneric<InputManager>
     public void SetJoystick(Joystick _joystick)
     {
         joystick = _joystick;
+    }
+
+
+    public void TouchInputsCheck(ref bool _hasInput)
+    {
+        _hasInput = joystick.Direction.x != 0 && joystick.Direction.y != 0;
     }
 
     public Vector3 TouchInputs(float zPos)

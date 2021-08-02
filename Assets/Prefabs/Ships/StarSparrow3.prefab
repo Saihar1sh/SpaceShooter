@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 1961771432414210285}
   m_Layer: 0
   m_Name: StarSparrow3
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -392,7 +392,8 @@ MonoBehaviour:
   - {fileID: 6577811550696590572}
   - {fileID: 2624362576267669398}
   - {fileID: 4879156324365688586}
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 7965533418964158584, guid: d36c69bfed12fcf4faee1f062bd9e53a,
+    type: 3}
 --- !u!1 &3489826305336813380
 GameObject:
   m_ObjectHideFlags: 0

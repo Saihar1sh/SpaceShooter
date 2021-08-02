@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyService : MonoBehaviour
+public class EnemyService : MonoSingletonGeneric<EnemyService>
 {
 
     [Header("Ship Details")]
@@ -17,9 +17,6 @@ public class EnemyService : MonoBehaviour
 
     private bool shipCreated;
 
-    [SerializeField]
-    [Tooltip("Must atleast be 2")]
-    private Vector3[] shipPositions;
 
     [Header("Asteriod Details")]
     [SerializeField]
@@ -30,6 +27,15 @@ public class EnemyService : MonoBehaviour
     [SerializeField]
     private float[] asterSpawnYPos;
 
+    [Header("Lists")]
+    [SerializeField]
+    private Transform ships, asteriods;
+
+    [SerializeField]
+    private Vector3[] shipPositions;
+
+    public List<AsteroidMovement> asteroidsObjs;
+    public List<EnemyView> enemyViews;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +51,30 @@ public class EnemyService : MonoBehaviour
 
         if (!shipCreated)
             StartCoroutine(SpawnEnemyShipDelay(10));
-    }
+
+        if (PlayerShipService.playerIsDead)
+        {
+            foreach (AsteroidMovement item in asteroidsObjs)
+            {
+                item.enabled = false;
+            }
+            foreach (EnemyView item in enemyViews)
+            {
+                item.enabled = false;
+            }
+        }
+/*        else
+        {
+            foreach (AsteroidMovement item in asteroidsObjs)
+            {
+                item.enabled = true;
+            }
+            foreach (EnemyView item in enemyViews)
+            {
+                item.enabled = true;
+            }
+        }
+*/    }
 
     private void SpawnEnemyWithPath(EnemyPath enemyPath)
     {
@@ -57,6 +86,7 @@ public class EnemyService : MonoBehaviour
             case EnemyPath.None:
                 for (int i = 0; i < shipPositions.Length; i++)
                 {
+                    shipPositions[i].z = 10;
                     SpawnEnemyShip(shipPositions[i]);
                 }
                 break;
@@ -92,12 +122,12 @@ public class EnemyService : MonoBehaviour
     {
         int randY = Random.Range(0, asterSpawnYPos.Length);
         Vector3 randPos = new Vector3(20 + posX, asterSpawnYPos[randY], 10);
-        Instantiate(asteroidPrefab, randPos, Quaternion.identity);
+        AsteroidMovement asteroidMovement = Instantiate(asteroidPrefab, randPos, Quaternion.identity, asteriods);
     }
 
     private EnemyController SpawnEnemyShip(Vector3 pos)
     {
-        EnemyController enemyController = new EnemyController(enemy, enemyModel, pos, enemy.transform.rotation);
+        EnemyController enemyController = new EnemyController(enemy, enemyModel, pos, enemy.transform.rotation, ships);
         return enemyController;
     }
 

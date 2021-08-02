@@ -13,6 +13,8 @@ public class BulletController : MonoBehaviour
     [SerializeField]
     private int damage = 10;
 
+    public LazerTypes lazerTypes;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -26,18 +28,40 @@ public class BulletController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        switch (lazerTypes)
         {
-            if (other.GetComponent<EnemyView>() != null)
-            {
-                other.GetComponent<EnemyView>().ModifyHealth(-damage);
-            }
+            case LazerTypes.None:
+                break;
+            case LazerTypes.Blue:
+                if (other.gameObject.tag == "Enemy")
+                {
+                    if (other.GetComponent<EnemyView>() != null)
+                    {
+                        other.GetComponent<EnemyView>().ModifyHealth(-damage);
+                    }
 
-            if (other.GetComponent<AsteroidMovement>() != null)
-            {
-                other.GetComponent<AsteroidMovement>().ExplodeAsteriod();
-            }
+                    if (other.GetComponent<AsteroidMovement>() != null)
+                    {
+                        other.GetComponent<AsteroidMovement>().ExplodeAsteriod();
+                    }
+                }
+                break;
+            case LazerTypes.Red:
+                if (other.gameObject.tag == "Player")
+                {
+                    other.GetComponent<PlayerShipView>().ModifyHealth(-damage);
+                }
+                break;
+            default:
+                break;
         }
 
+
     }
+}
+public enum LazerTypes
+{
+    None,
+    Red,
+    Blue,
 }
