@@ -37,13 +37,7 @@ public class EnemyService : MonoSingletonGeneric<EnemyService>
     public List<AsteroidMovement> asteroidsObjs;
     public List<EnemyView> enemyViews;
 
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (!asteriodCreated)                                             //asteriods will be created continously in time intervals
@@ -63,19 +57,7 @@ public class EnemyService : MonoSingletonGeneric<EnemyService>
                 item.enabled = false;
             }
         }
-/*        else
-        {
-            foreach (AsteroidMovement item in asteroidsObjs)
-            {
-                item.enabled = true;
-            }
-            foreach (EnemyView item in enemyViews)
-            {
-                item.enabled = true;
-            }
-        }
-*/    }
-
+    }
     private void SpawnEnemyWithPath(EnemyPath enemyPath)
     {
         Vector3 initPos = new Vector3(25, 11, 10);                      //top right corner

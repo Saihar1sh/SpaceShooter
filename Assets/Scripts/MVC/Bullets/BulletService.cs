@@ -9,18 +9,6 @@ public class BulletService : MonoSingletonGeneric<BulletService>
 
     private bool canShoot = true, canEShoot = true;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void SpawnBullet(Transform[] firePoints)
     {
         if (canShoot)

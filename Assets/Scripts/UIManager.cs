@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoSingletonGeneric<UIManager>
 {
-    [SerializeField]
-    private TextMeshProUGUI hitpoints;
 
     [SerializeField]
     private Canvas canvas;
@@ -53,13 +51,6 @@ public class UIManager : MonoSingletonGeneric<UIManager>
     public void GameoverUI(bool o)
     {
         gameoverUIImg.gameObject.SetActive(o);
-    }
-    public void HitpointUI(Vector3 pos, string hitpointMsg)
-    {
-        hitpoints.text = hitpointMsg;
-        Vector3 screenPos = Camera.main.WorldToViewportPoint(pos);
-        GameObject gameObject = Instantiate(hitpoints.gameObject, screenPos, Quaternion.identity, canvas.transform);
-        Destroy(gameObject, 1f);
     }
     private void RetryMenu()
     {
