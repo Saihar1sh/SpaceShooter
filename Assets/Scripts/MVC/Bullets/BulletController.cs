@@ -45,6 +45,8 @@ public class BulletController : MonoBehaviour
                     {
                         other.GetComponent<AsteroidMovement>().ExplodeAsteriod();
                     }
+                    UIManager.Instance.HitpointUI(other.transform.position, "-" + damage);
+
                 }
 
                 break;

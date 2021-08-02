@@ -19,6 +19,7 @@ public class EnemyView : MonoBehaviour
 
     private EnemyController enemyController;
 
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
