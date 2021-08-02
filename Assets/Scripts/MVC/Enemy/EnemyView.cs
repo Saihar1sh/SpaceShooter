@@ -6,16 +6,19 @@ public class EnemyView : MonoBehaviour
 {
     public float mvtSpeed = 5f;
 
-    public int damage = 10;
+    public int damage = 10, maxHealth = 100;
 
-    private bool canShoot = true;
+    private float health;
+
+    public bool canShoot = true;
 
     private Rigidbody rb;
 
     [SerializeField]
-    private Transform firePoint;
+    private Transform[] firePoints;
 
     private EnemyController enemyController;
+
 
     private void Awake()
     {
@@ -24,15 +27,33 @@ public class EnemyView : MonoBehaviour
 
     void Start()
     {
-
+        EnemyService.Instance.enemyViews.Add(this);
+        health = maxHealth;
+        Destroy(gameObject, 15f);                               //max lifetime
     }
 
     // Update is called once per frame
     void Update()
     {
         Movement();
+        HealthCheck();
         if (canShoot)
-            StartCoroutine(LazerDelay());
+            StartCoroutine(LazerDelay(1));
+    }
+    private void HealthCheck()
+    {
+        if (health <= 0)
+            health = 0;
+
+        if (health == 0)
+        {
+            ParticleService.Instance.CommenceExplosion(transform);
+            Destroy(gameObject);
+        }
+    }
+    public void ModifyHealth(int value)
+    {
+        health += value;
     }
 
     private void Movement()
@@ -40,7 +61,6 @@ public class EnemyView : MonoBehaviour
         rb.velocity = transform.up * -1 * mvtSpeed;                                 //it moves along green axis which is forward according to prefab
 
     }
-
     public void GetEnemyController(EnemyController _enemyController)
     {
         this.enemyController = _enemyController;
@@ -56,11 +76,17 @@ public class EnemyView : MonoBehaviour
     }
 
 
-    IEnumerator LazerDelay()
+
+    IEnumerator LazerDelay(float secs)
     {
         canShoot = false;
-        yield return new WaitForSeconds(0);
-        BulletService.Instance.SpawnEnemyBullet(firePoint.position, 1f);
+        yield return new WaitForSeconds(secs);
+        BulletService.Instance.SpawnEnemyBullet(firePoints);
         canShoot = true;
+    }
+    private void OnDestroy()
+    {
+        UIManager.Instance.ScoreIncreament(20);
+        EnemyService.Instance.enemyViews.Remove(this);
     }
 }

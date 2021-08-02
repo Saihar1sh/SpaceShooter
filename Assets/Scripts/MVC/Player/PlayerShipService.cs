@@ -12,16 +12,24 @@ public class PlayerShipService : MonoSingletonGeneric<PlayerShipService>
     [SerializeField]
     private Vector3 spawnpoint;
 
+    public static bool playerIsDead = false;
+
+    public List<PlayerShipView> playerShips;
+
     // Start is called before the first frame update
     void Start()
     {
-        CreatePlayerShip();
+
+        //CreatePlayerShip();
+    }
+    private void OnEnable()
+    {
+        playerIsDead = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 
     public PlayerShipcontroller CreatePlayerShip()
@@ -29,4 +37,5 @@ public class PlayerShipService : MonoSingletonGeneric<PlayerShipService>
         PlayerShipcontroller playerShipcontroller = new PlayerShipcontroller(playerShipView, shipModel, spawnpoint, Quaternion.Euler(0, 90, 0));
         return playerShipcontroller;
     }
+
 }
